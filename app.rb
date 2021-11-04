@@ -51,15 +51,15 @@ get '/contacts' do
 end
 
 post '/contacts' do
-	
-	@email =   params[:email]
-	@posts =   params[:posts]
+	@name   =  params[:name]
+	@email  =  params[:email]
+	@body  =   params[:body]
 
- @title1 = "Сообщение отправил клиент: #{@email}! "
+ @title1 = "Сообщение отправил: #{@name.capitalize}, эл.почта: #{@email}, текст: #{@body}! "
 
 
 f = File.open './public/contacts.txt', 'a'
-f.write "E-mail клиента: #{@email}, Сообщение клиента: #{@posts};   "
+f.write "Имя: #{@name}, E-mail клиента: #{@email}, Сообщение клиента: #{@body};   "
 f.close
 
 erb :message
