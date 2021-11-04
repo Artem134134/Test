@@ -55,6 +55,18 @@ post '/contacts' do
 	@email  =  params[:email]
 	@body  =   params[:body]
 
+	# хеш
+	hh = {:name => 'Введите имя' ,
+	 :email => 'E-mail' ,
+	  :body => 'Введите текст '}
+
+
+@error = hh.select {|key,_| params[key] == ""}.values.join(", ")
+if @error != ''
+			return erb :contacts
+		
+end	
+
  @title1 = "Сообщение отправил: #{@name.capitalize}, эл.почта: #{@email}, текст: #{@body}! "
 
 
