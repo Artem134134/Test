@@ -23,9 +23,9 @@
 
   <select id="aaa" class="form-select " name="barmans" aria-label="Default select example">
   <option selected>Выберите бармена</option>
-  <option value="Walter White">Walter White</option>
-  <option value="Jessie Pinkman">Jessie Pinkman</option>
-  <option value="Gus Fring">Gus Fring</option>
+  <option <%=@barmans == 'Walter White' ? 'selected': '' %>> Walter White </option>
+  <option <%=@barmans == 'Jessie Pinkman' ? 'selected': '' %>> Jessie Pinkman</option>
+  <option <%=@barmans == 'Gus Fring' ? 'selected': '' %>>Gus Fring</option>
 </select>
    
   <div class="mb-3">
