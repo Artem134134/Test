@@ -1,7 +1,15 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Имя</th>
+            <th><Телефон</th>
+            <th>Дата записи</th>
+            <th>Бармен</th>
+            <th>Цвет</th>
+        </tr>
+    </thead> 
 
-<%= @results %>
-
-<table class="table">
+    <body>
     <% @results.each do |row| %>
         <tr>
             <td><%= row['Name'] %></td>
@@ -11,4 +19,5 @@
             <td><%= row['Color'] %></td>
         </tr>
     <% end %>
+  </body>
 </table>
