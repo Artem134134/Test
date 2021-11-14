@@ -4,20 +4,34 @@ require 'sinatra'
 require 'sinatra/reloader'
  require 'sqlite3'
 
+def get_db
+       	db = SQLite3::Database.new 'ShopeBar.db'
+ 	 db.results_as_hash = true
+  	return db
+end
+
  configure do
  	db = get_db	
 	db.execute 'CREATE TABLE IF NOT EXISTS
  "Users" 
  (
  	"id" INTEGER PRIMARY KEY AUTOINCREMENT,
- 	"username" TEXT,
- 	"phone" TEXT,
- 	"datetime" TEXT,
- 	"barmen" TEXT,
-	"color" TEXT
+ 	"Name" TEXT,
+ 	"Phone" TEXT,
+ 	"DateTime" TEXT,
+ 	"Barmen" TEXT,
+	"Color" TEXT
  )'
-
+  db.close
  end
+
+  db = get_db
+ db.execute 'insert into Users
+ (	Name, Phone, DateTime, Barmen, Color)
+ values (?, ?, ?, ?, ?)', [@Name, @Phone, @DateTime, @Barmen, @Color]
+
+ # erb "OK, username is #{@Name}, #{@Phone}, #{@DateTime}, #{@Barmen}, #{@Color}"
+ db.close
 
 get '/' do
 	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>"			
@@ -47,6 +61,7 @@ hh =  { :username => 'Введите имя',
 
 @error = hh.select {|key,_| params[key] == ""}.values.join(", ")
 if @error != ''
+
 			return erb :visit
 		
 end	
@@ -58,22 +73,14 @@ f = File.open './public/users.txt', 'a'
 f.write "Ваш бармен: #{@barmen}, имя посетителя: #{@username.capitalize}, телефон: #{@phone}, дата и время: #{@datetime}, Цвет коктеля: #{@color};   "
 f.close
 
- db = get_db
- db.execute 'insert into Users
- (	username, phone, datetime, barmen, color)
- values (?, ?, ?, ?, ?)', [@username, @phone, @datetime, @barmen, @color]
+erb :message
 
- erb "OK, username is #{@username}, #{phone}, #{datetime}, #{barmen}, #{color}"
- end
-
- def get_db
-	 return SQLite3::Database.new 'ShopeBar.db'
-	 db.results_as_hash = true
-	 return db
- end
+end
 
 
-	erb :message
+
+
+	
  
 
 get '/contacts' do
