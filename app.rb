@@ -42,9 +42,11 @@ get '/about' do
 	erb :about 
 end
 
+
 get '/visit' do
 	erb :visit
 end
+
 
 post '/visit' do 
 
@@ -73,15 +75,9 @@ f = File.open './public/users.txt', 'a'
 f.write "Ваш бармен: #{@barmen}, имя посетителя: #{@username.capitalize}, телефон: #{@phone}, дата и время: #{@datetime}, Цвет коктеля: #{@color};   "
 f.close
 
-erb :message
-
+	erb :message
 end
 
-
-
-
-	
- 
 
 get '/contacts' do
 	erb :contacts
@@ -111,7 +107,11 @@ f = File.open './public/contacts.txt', 'a'
 f.write "Имя: #{@name}, E-mail клиента: #{@email}, Сообщение клиента: #{@body};   "
 f.close
 
-erb :message
+	erb :message
 
+end
+
+get '/showusers' do
+	erb :showusers
 end
 
