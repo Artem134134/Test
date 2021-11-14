@@ -1,6 +1,18 @@
 <h2>Записаться</h2>
 <p>На этой странице вы можете записвться к нам в Hookah Shope & Bar... VLG</p>
 
+<script type="text/javascript">
+ 
+  $(function(){
+    $('#color').simplecolorpicker();
+   $('#datetimepicker').datetimepicker();
+
+    $('.ccc').css('background-color','#add8e6');  
+    $('#aaa').css('background-color','#b0e0e6');
+  });
+  //It's right for jQuery !
+  </script>
+
 <form action="/visit" method="POST">
 
 
@@ -17,7 +29,7 @@
 
   <div class="mb-3">
     <label>Когда вас ждать</label>
-    <input name="datetime" type="text" class="form-control ccc" placeholder="Введите дату и время" value="<%= @datetime %>">
+    <input id="datetimepicker" type="text" name="datetime" class="form-control ccc" placeholder="Введите дату и время" value="<%= @datetime %>">
     <label></label>
   </div>
 
@@ -50,12 +62,3 @@
 
 </form> 
 
-<script type="text/javascript">
- 
-  $(function(){
-    $('#color').simplecolorpicker();
-    $('.ccc').css('background-color','#add8e6');  
-    $('#aaa').css('background-color','#b0e0e6');
-  });
-  //It's right for jQuery !
-  </script>
