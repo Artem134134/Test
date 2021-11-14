@@ -2,22 +2,22 @@
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
-# require 'sqlite3'
+ require 'sqlite3'
 
-# configure do
-# 	db = get_db	
-#	db.execute 'CREATE TABLE IF NOT EXISTS
-# "Users" 
-# (
-# 	"id" INTEGER PRIMARY KEY AUTOINCREMENT,
-# 	"username" TEXT,
-# 	"phone" TEXT,
-# 	"datetime" TEXT,
-# 	"barmen" TEXT,
-# 	"color" TEXT
-# )'
+ configure do
+ 	db = get_db	
+	db.execute 'CREATE TABLE IF NOT EXISTS
+ "Users" 
+ (
+ 	"id" INTEGER PRIMARY KEY AUTOINCREMENT,
+ 	"username" TEXT,
+ 	"phone" TEXT,
+ 	"datetime" TEXT,
+ 	"barmen" TEXT,
+	"color" TEXT
+ )'
 
-# end
+ end
 
 get '/' do
 	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>"			
@@ -58,20 +58,23 @@ f = File.open './public/users.txt', 'a'
 f.write "Ваш бармен: #{@barmen}, имя посетителя: #{@username.capitalize}, телефон: #{@phone}, дата и время: #{@datetime}, Цвет коктеля: #{@color};   "
 f.close
 
-# db = get_db
-# db.execute 'insert into Users
-# (	username, phone, datetime, barmen, color)
-# values (?, ?, ?, ?, ?)', [@username, @phone, @datetime, @barmen, @color]
+ db = get_db
+ db.execute 'insert into Users
+ (	username, phone, datetime, barmen, color)
+ values (?, ?, ?, ?, ?)', [@username, @phone, @datetime, @barmen, @color]
 
-# erb "OK, username is #{@username}, #{phone}, #{datetime}, #{barmen}, #{color}"
-# end
+ erb "OK, username is #{@username}, #{phone}, #{datetime}, #{barmen}, #{color}"
+ end
 
-# def get_db
-	# return SQLite3::Database.new 'ShopeBar.db'
-# end
+ def get_db
+	 return SQLite3::Database.new 'ShopeBar.db'
+	 db.results_as_hash = true
+	 return db
+ end
+
 
 	erb :message
- end
+ 
 
 get '/contacts' do
 	erb :contacts
