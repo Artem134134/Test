@@ -58,8 +58,7 @@ end
  (	Name, Phone, DateTime, Barmen, Color)
  values (?, ?, ?, ?, ?)', [@Name, @Phone, @DateTime, @Barmen, @Color]
 
- # erb "OK, username is #{@Name}, #{@Phone}, #{@DateTime}, #{@Barmen}, #{@Color}"
- db.close
+ # erb "<h2>Спасибо, вы записаны.</h2>"
 
 get '/' do
 	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>"			

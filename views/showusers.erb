@@ -1,22 +1,22 @@
 <table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Имя</th>
-            <th>Телефон</th>
-            <th>Дата записи</th>
-            <th>Бармен</th>
-            <th>Цвет</th>
-        </tr>
-    </thead> 
+  <thead>
+      <tr>
+          <th>Имя</th>
+          <th>Телефон</th>
+          <th>Дата записи</th>
+           <th>Бармен</th>
+          <th>Цвет</th>
+      </tr>
+  </thead> 
 
-    <tbody>
+  <tbody>
     <% @results.each do |row| %>
         <tr>
             <td><%= row['Name'] %></td>
             <td><%= row['Phone'] %></td>
             <td><%= row['DateTime'] %></td>
             <td><%= row['Barmen'] %></td>
-            <td><%= row['Color'] %></td>
+            <td style="background-color": <%= row['color'] %>><%= row['color'] %></td>
         </tr>
     <% end %>
   </tbody>
